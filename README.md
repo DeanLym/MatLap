@@ -1,2 +1,2 @@
 # MatLap
-Optimization Based Principal Component Analysis
+Matlab like interface for lapack
