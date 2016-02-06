@@ -14,7 +14,7 @@ using namespace::std;
 int main(){
 	Matrix x,y,z;
 	double w = 1.5;
-	x = Matrix::ones(3,2);
+	x = Matrix::ones(2,2);
 	y = Matrix::ones(2,1);
 	x += 1.0;
 	z = 5.5 + x;
@@ -24,10 +24,10 @@ int main(){
 //	z = z - 1.0;
 //	z -= 2.0;
 //	z = z-y;
-//	z = x*y;
-	cout << z.nRow_ << endl;
-	cout << z.nCol_ << endl;
-	cout << z.data_[0] << endl;
-	cout << z.data_[1] << endl;
+	z = z*y;
+	cout << "Number of rows: " << z.nRow_ << endl;
+	cout << "Number of cols: " << z.nCol_ << endl;
+	cout << "Matrix:" << endl; 
+	cout << z.data_[0] << endl <<z.data_[1] << endl;
 	return 1;
 }
