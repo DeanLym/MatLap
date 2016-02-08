@@ -72,34 +72,6 @@ int Matrix::get_nCol(){
 }
 
 
-
-Matrix Matrix::ones(int nRow,int nCol){
-	Matrix m(nRow,nCol);
-	double one = 1.0;
-	vector<double> data(nRow*nCol,one);
-	m.data_ = data;
-	return m;
-}
-
-Matrix Matrix::zeros(int nRow,int nCol){
-	Matrix m(nRow,nCol);
-	double zero = 0.0;
-	vector<double> data(nRow*nCol,zero);
-	m.data_ = data;
-	return m;
-}
-
-Matrix Matrix::rand(int nRow,int nCol){
-	Matrix m(nRow,nCol);
-	std::srand(std::time(0)); // use current time as seed for random generator
-    double random_number;
-	for (int i=0; i<nRow*nCol; ++i) {
-		random_number = (double)std::rand()/(double)RAND_MAX;
-		m.data_.push_back(random_number);
-	}
-	return m;
-}
-
 Matrix& Matrix::operator=(const Matrix& other){
 	nRow_ = other.nRow_;
 	nCol_ = other.nCol_;
@@ -313,7 +285,46 @@ Matrix operator- (double value, Matrix& other){
 	return other;
 }
 
-bool Matrix::svd(Matrix A, Matrix& U, Matrix& Sig){
+ostream& operator<< (ostream& os , Matrix &X ){
+	for(int i=0 ; i<X.nRow_; i++){
+		for(int j=0; j<X.nCol_;j++)
+			os << X.data_[X.nRow_*j+i] << " ";
+		os<<endl;
+	}
+	return os;
+}
+
+
+
+Matrix zeros(int nRow,int nCol){
+	Matrix m(nRow,nCol);
+	double zero = 0.0;
+	vector<double> data(nRow*nCol,zero);
+	m.data_ = data;
+	return m;
+}
+
+Matrix rand(int nRow,int nCol){
+	Matrix m(nRow,nCol);
+	std::srand(std::time(0)); // use current time as seed for random generator
+    double random_number;
+	for (int i=0; i<nRow*nCol; ++i) {
+		random_number = (double)std::rand()/(double)RAND_MAX;
+		m.data_.push_back(random_number);
+	}
+	return m;
+}
+
+Matrix ones(int nRow,int nCol){
+	Matrix m(nRow,nCol);
+	double one = 1.0;
+	vector<double> data(nRow*nCol,one);
+	m.data_ = data;
+	return m;
+}
+
+
+bool svd(Matrix A, Matrix& U, Matrix& Sig){
 	try{
 		if( A.data_.empty())
 			throw runtime_error(Matrix::ERR_EMPTY_MATRIX);
@@ -352,14 +363,6 @@ bool Matrix::svd(Matrix A, Matrix& U, Matrix& Sig){
 
 }
 
-ostream& operator<< (ostream& os , Matrix &X ){
-	for(int i=0 ; i<X.nRow_; i++){
-		for(int j=0; j<X.nCol_;j++)
-			os << X.data_[X.nRow_*j+i] << " ";
-		os<<endl;
-	}
-	return os;
-}
 
 }
 

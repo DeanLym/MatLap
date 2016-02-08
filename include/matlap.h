@@ -22,11 +22,8 @@ public:
 	Matrix();
 	Matrix(int nRow,int nCol);
 	~Matrix();
-	static Matrix zeros(int nRow,int nCol);
-	static Matrix ones(int nRow,int nCol);
-	static Matrix rand(int nRow,int nCol);
-	static Matrix size(Matrix& x);
-	static bool svd(Matrix A, Matrix& U, Matrix& Sig);
+
+
 	Matrix& operator = ( const Matrix& other);
 	Matrix operator+ (Matrix& other);
 	Matrix operator+ (double other);
@@ -49,12 +46,19 @@ public:
 	int nCol_;
 	bool sysm_;
 
-private:
+public:
 	static const string ERR_EMPTY_MATRIX;
 	static const string ERR_DIM_MISMATCH;
 	static const string ERR_SVD_FAIL;
 	static const string ERR_NON_POSITIVE_DIM;
 };
+
+Matrix ones(int nRow,int nCol);
+Matrix zeros(int nRow,int nCol);
+Matrix ones(int nRow,int nCol);
+Matrix rand(int nRow,int nCol);
+Matrix size(Matrix& x);
+bool svd(Matrix A, Matrix& U, Matrix& Sig);
 
 }
 #endif /* MATLAP_H_ */
