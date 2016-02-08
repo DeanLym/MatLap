@@ -10,6 +10,8 @@
 
 #include <vector>
 #include <string>
+#include <iostream>
+#include <random>
 using namespace::std;
 
 namespace MatLap
@@ -22,8 +24,9 @@ public:
 	~Matrix();
 	static Matrix zeros(int nRow,int nCol);
 	static Matrix ones(int nRow,int nCol);
-	static Matrix size(Matrix x);
-	static vector<Matrix> svd(Matrix x);
+	static Matrix rand(int nRow,int nCol);
+	static Matrix size(Matrix& x);
+	static bool svd(Matrix A, Matrix& U, Matrix& Sig);
 	Matrix& operator = ( const Matrix& other);
 	Matrix operator+ (Matrix& other);
 	Matrix operator+ (double other);
@@ -34,6 +37,8 @@ public:
 	Matrix& operator-= (double other);
 	Matrix operator*(Matrix& other);
 	friend Matrix operator+(double, Matrix &) ;
+	friend Matrix operator-(double, Matrix &) ;
+	friend ostream& operator<< (ostream&,Matrix &);
 protected:
 	int get_nRow();
 	int get_nCol();
@@ -47,6 +52,8 @@ public:
 private:
 	static const string ERR_EMPTY_MATRIX;
 	static const string ERR_DIM_MISMATCH;
+	static const string ERR_SVD_FAIL;
+	static const string ERR_NON_POSITIVE_DIM;
 };
 
 }
