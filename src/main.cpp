@@ -26,24 +26,19 @@ int main(){
 //	z -= 2.0;
 //	z = z-y;
 //	z = x*y;
-	z = rand(3,2);
+//	z = rand(3,2);
+	z = load("z.txt");
+	int tmp;
+	tmp = sub2lin({5,3},1,2);
 	Matrix U,Sig;
 	cout << "z (before svd):" << endl;
-	cout << z.nRow_ << endl;
-	cout << z.nCol_ << endl;
 	cout << z << endl;
 	svd(z,U,Sig);
 	cout << "z (after svd):" << endl;
-	cout << z.nRow_ << endl;
-	cout << z.nCol_ << endl;
 	cout << z << endl << endl;
 	cout << "U:" << endl;
-	cout << U.nRow_ << endl;
-	cout << U.nCol_ << endl;
 	cout << U << endl;
 	cout << "Sig:" << endl;
-	cout << Sig.nRow_ << endl;
-	cout << Sig.nCol_ << endl;
 	cout << Sig << endl;
 	return 1;
 }

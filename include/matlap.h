@@ -12,6 +12,12 @@
 #include <string>
 #include <iostream>
 #include <random>
+#include <cstdlib>
+#include <exception>
+#include <stdexcept>
+#include <ctime>
+#include <fstream>
+#include <sstream>
 using namespace::std;
 
 namespace MatLap
@@ -36,11 +42,17 @@ public:
 	friend Matrix operator+(double, Matrix &) ;
 	friend Matrix operator-(double, Matrix &) ;
 	friend ostream& operator<< (ostream&,Matrix &);
+	friend Matrix ones(int nRow,int nCol);
+	friend Matrix zeros(int nRow,int nCol);
+	friend Matrix rand(int nRow,int nCol);
+	friend Matrix size(Matrix& x);
+	friend Matrix load(char* fn);
+	friend bool svd(Matrix A, Matrix& U, Matrix& Sig);
 protected:
 	int get_nRow();
 	int get_nCol();
 
-public:
+private:
 	vector<double> data_;
 	int nRow_;
 	int nCol_;
@@ -51,6 +63,8 @@ public:
 	static const string ERR_DIM_MISMATCH;
 	static const string ERR_SVD_FAIL;
 	static const string ERR_NON_POSITIVE_DIM;
+	static const string ERR_FILE_NOT_EXIST;
+	static const string ERR_INCONSISTENT_DIM_IN_DATAFILE;
 };
 
 Matrix ones(int nRow,int nCol);
@@ -58,6 +72,9 @@ Matrix zeros(int nRow,int nCol);
 Matrix ones(int nRow,int nCol);
 Matrix rand(int nRow,int nCol);
 Matrix size(Matrix& x);
+Matrix load(char* fn);
+vector<int> sub2lin(vector<int> dim,vector<int> I, vector<int> J);
+int sub2lin(vector<int> dim,int I, int J);
 bool svd(Matrix A, Matrix& U, Matrix& Sig);
 
 }
